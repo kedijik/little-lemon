@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">LittleLemon</string>
+    <string name="LoggedIn">isLoggedIn</string>
+    <string name="FirstName">FirstName</string>
+    <string name="LastName">LastName</string>
+    <string name="Email">Email</string>
 </resources>

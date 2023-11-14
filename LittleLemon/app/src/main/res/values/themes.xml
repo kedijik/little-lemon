@@ -2,6 +2,11 @@
 <resources>
 
     <style name="Theme.LittleLemon" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:statusBarColor">@color/purple_700</item>
+        <item name="android:colorPrimary">@color/beige</item>
+        <item name="android:colorBackground">@color/white</item>
+        <item name="android:colorPrimaryDark">@color/darkestGreen</item>
+        <item name="android:navigationBarColor">@color/darkestGreen</item>
+        <item name="android:actionBarSize">100dp</item>
+        <item name="android:statusBarColor" >@color/darkestGreen</item>
     </style>
 </resources>
