@@ -130,7 +130,7 @@ fun Form(navController: NavController){
                     .putString(Constants.EMAIL, email.value)
                     .commit()
                     Toast.makeText(curr,"Registration successful.", Toast.LENGTH_LONG).show()
-                navController.navigate(Profile.route)}}
+                navController.navigate(Home.route)}}
             else {
                 prefs.edit()
                     .clear()

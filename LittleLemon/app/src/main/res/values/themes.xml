@@ -2,7 +2,7 @@
 <resources>
 
     <style name="Theme.LittleLemon" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:colorPrimary">@color/beige</item>
+        <item name="android:colorPrimary">@color/darkGreen</item>
         <item name="android:colorBackground">@color/white</item>
         <item name="android:colorPrimaryDark">@color/darkestGreen</item>
         <item name="android:navigationBarColor">@color/darkestGreen</item>

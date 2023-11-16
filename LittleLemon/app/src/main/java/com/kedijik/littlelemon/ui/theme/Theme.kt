@@ -23,7 +23,8 @@ private val LightColorPalette = lightColors(
     background = White,
     onPrimary = DarkGrey,
     onSecondary = LightGrey,
-    secondaryVariant = Yellow
+    secondaryVariant = Yellow,
+    onSurface = Salmon
 
 
 
