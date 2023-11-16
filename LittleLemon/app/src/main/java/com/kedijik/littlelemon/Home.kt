@@ -1,5 +1,6 @@
 package com.kedijik.littlelemon
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -21,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
@@ -44,7 +46,7 @@ fun Home(){
     Column( modifier = Modifier
         .fillMaxSize()
         .background(colors.background)
-        .padding(horizontal = 12.dp)){
+        ){
         //Hero Section
         Column(verticalArrangement = Arrangement.Top,
             modifier = Modifier
@@ -75,16 +77,16 @@ fun Home(){
 
         Column(verticalArrangement = Arrangement.Center,
             modifier = Modifier
-                .fillMaxHeight(0.14f)
-                .fillMaxWidth()
+                .fillMaxHeight(0.2f)
+                .fillMaxWidth().padding(horizontal = 12.dp)
                 .background(colors.background)
                 ){
             Categories(category,vm.menuItems.value.map{it.category}.distinct())}
-
+        Column(  modifier = Modifier.padding(horizontal = 12.dp)){
         Divider(color = colors.onSecondary )
         //MenuList
 
-        MenuItems(filterItems(vm.menuItems.value,searchTerm.value,category.value))}
+        MenuItems(filterItems(vm.menuItems.value,searchTerm.value,category.value))}}
 
 
 }
@@ -143,7 +145,7 @@ fun SearchBox(state: MutableState<TextFieldValue>) {
                 }
             }
         },
-   //     placeholder = { Text("Enter Search Phrase", textAlign = TextAlign.Center) },
+        placeholder = { Text("Enter Search Phrase", textAlign = TextAlign.Center) },
         singleLine = true,
         shape = RoundedCornerShape(12.dp), // The TextFiled has rounded corners top left and right by default
         colors = TextFieldDefaults.textFieldColors(
@@ -177,27 +179,30 @@ fun MenuItems(menu: List<MenuItem>?){
 }
 
 
-@OptIn(ExperimentalGlideComposeApi::class)
+@OptIn(ExperimentalGlideComposeApi::class, ExperimentalMaterialApi::class)
 @Composable
 fun MenuItemCard(dish: MenuItem) {
-    Column (modifier = Modifier
-        .fillMaxWidth()
-        .padding(vertical = 12.dp)){
+    val curr= LocalContext.current
+    Card (backgroundColor = colors.background, elevation = 0.dp, onClick = {
+        Toast.makeText(curr,"${dish.title} added.", Toast.LENGTH_SHORT).show()}){
+        Column(modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 12.dp), ){
         Text(dish.title, textAlign = TextAlign.Start, fontWeight = FontWeight.Bold,color=Color.Black)
         Spacer(Modifier.padding(4.dp))
         Row(modifier = Modifier
             .fillMaxWidth()
-            .height(60.dp)){
+            .height(72.dp)){
             Column(modifier = Modifier
                 .fillMaxWidth(.8f)
-                .padding(end = 4.dp)){
+                .padding(end = 4.dp), verticalArrangement = Arrangement.SpaceBetween){
                 Text(dish.desc, maxLines = 2, overflow = TextOverflow.Ellipsis, fontSize = 14.sp)
                 Spacer(Modifier.padding(4.dp))
                 Text("\$${"%.2f".format(dish.price)}")
             }
 
            GlideImage(model = dish.imgURL, contentDescription = dish.desc, contentScale = ContentScale.Crop)
-        }
+        }}
     }
 
 }
